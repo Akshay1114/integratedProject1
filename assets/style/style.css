@@ -1,0 +1,40 @@
+* {
+margin: 0;
+padding: 0;
+border: 0;
+box-sizing: border-box;
+scroll-behavior: smooth;
+}
+
+img{
+max-width: 100%;
+height: auto;
+display: block;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+.btns{
+    padding: .8rem 1.5rem;
+    border-radius: 4px;
+}
+.exportBtn{
+    color: #ffffff;
+    background-color: grey;
+}
+.exportBtn:hover{
+    background-color: rgb(55, 54, 54);
+    cursor: pointer;
+}
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main > div {
+    border: 1px solid;
+    padding: 1rem;
+}
