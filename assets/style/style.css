@@ -38,3 +38,7 @@ main > div {
     border: 1px solid;
     padding: 1rem;
 }
+
+#map {
+    height: 80vh;
+}
