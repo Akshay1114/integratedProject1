@@ -7,10 +7,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-// Variable to store the user's marker
+// Variables to store the user's marker and path
 let userMarker;
 let userPath = [];
-let locationData = []
+let locationData = [];
+let polyline;
 
 // Function to update the map with the user's location
 function updateLocation() {
@@ -23,12 +24,14 @@ function updateLocation() {
                 lat: lat,
                 lon: lon,
                 acc: acc
-            }
+            };
             console.log(`Lat: ${lat}, Lon: ${lon}`); // Logging the position
-            locationData.push(locaData)
+            locationData.push(locaData);
+            console.log(locationData);
+
             // Center the map on the user's location
             map.setView([lat, lon], 16);
-console.log(locationData)
+
             // Add or update the marker for the user's location
             if (!userMarker) {
                 userMarker = L.marker([lat, lon]).addTo(map);
@@ -40,9 +43,13 @@ console.log(locationData)
 
             // Track the user's path
             userPath.push([lat, lon]);
-            L.polyline(userPath, {color: 'blue'}).addTo(map);
+            if (polyline) {
+                map.removeLayer(polyline); // Remove the previous polyline
+            }
+            polyline = L.polyline(userPath, { color: 'blue' }).addTo(map);
         }, error => {
             console.error(`Geolocation error: ${error.message}`); // Logging geolocation errors
+            alert(`Geolocation error: ${error.message}`);
         });
     } else {
         alert("Geolocation is not supported by this browser.");
